@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AS-Remove-URIPath" version="SHA-512:fde74381181dd4d5a411a403db088aa097f8d090a9815bec653ed14a4fcfd30bcc656702cf0e403b54ce7968338ac8cc420fcee9c3895e1fcb5dad40fbb8b4e2"/>
+        <VersionInfo resourceName="Assign-Message-1" version="SHA-512:1f8a0d0956eee163855cb34e738ef9bb38950bf405908d08e7cc5d9a0e7455ee4226da2b686212d5c40b1128f8272cde49b60280d3d8e9c7bf56a056fc18bd43"/>
+        <VersionInfo resourceName="OAuth-v20-1" version="SHA-512:1b035c1b6ba93a87855ac5ba0e8d7f199a0128c754a0914849ce5e0b02338985011a6e46daeb4c150a2c43d7cd66a5c799ee3527d2c556670e34606bd7da791c"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:af73ea2fa40951133f4d83bb33af0e93db53a20aa9417c232460e256d91f33ca45ddbd1a4b3c765c6c13fc04a80db6205381dd603bf08beea567afce96bb4971"/>
+    </ProxyEndpoints>
+    <Resources/>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:0f452e4556ff1d1a94bcc2e36166e8cd8b47af92072a718944b222aba383cc019a566ae76fae6020bb03a225a9ba8851d7b79f29032c093dd4861a8e406b939e"/>
+    </TargetEndpoints>
+</Manifest>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="hr-api">
+    <Basepaths>/hr</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1525792835438</CreatedAt>
+    <CreatedBy>onlineman477@gmail.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>hr-api</DisplayName>
+    <LastModifiedAt>1525864693839</LastModifiedAt>
+    <LastModifiedBy>onlineman477@gmail.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:3a2c92ee2de43af8664bb78684297277f4009ba903192bfac059dc2e57d4c6b2dc46accaca487d8488f77b96c9470ab1ca4d51f5916054ba61f3909835a7561b</ManifestVersion>
+    <Policies>
+        <Policy>AS-Remove-URIPath</Policy>
+        <Policy>Assign-Message-1</Policy>
+        <Policy>OAuth-v20-1</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

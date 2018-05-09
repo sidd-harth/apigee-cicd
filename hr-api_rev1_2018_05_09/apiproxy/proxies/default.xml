@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="specificUser">
+            <Description/>
+            <Request>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/{name}") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="addUser">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="updateUser">
+            <Description/>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/{name}") and (request.verb = "PUT")</Condition>
+        </Flow>
+        <Flow name="deleteUser">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>OAuth-v20-1</Name>
+                </Step>
+                <Step>
+                    <Name>Assign-Message-1</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/{name}") and (request.verb = "DELETE")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/hr</BasePath>
+        <Properties/>
+        <VirtualHost>default</VirtualHost>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>
