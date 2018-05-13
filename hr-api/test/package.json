@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "Integration testing for HR API v1",
 	"dependencies": {
-		"apickli": "latest"
+		"apickli": "latest",
+		"cucumber": "^0.10.2"
 	}
 }
