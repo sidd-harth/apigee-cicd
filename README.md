@@ -1,3 +1,4 @@
+## !! incomplete steps !! futher refining is required !!
 # CI/CD Demo - Apigee API Management Platform
 This repository includes the instructions and pipeline definition for CI/CD using Jenkins, Apigee Lint, Apickli, Cucumber Reports, Slack & Apigee Maven Deploy plugin on Apigee.
 
