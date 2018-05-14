@@ -8,7 +8,7 @@ node {
   }
 
   stage('Unit testing') {
-   sh "curl -u sPGXsaVs7oGeDlb7: 'https://assertible.com/deployments' -d'{\"service\":\"d8d7fe86-798e-43da-bc73-b0a94b325ae4\",\"environmentName\":\"production\",\"version\":\"v1\"}'"
+   sh "curl -u apikey: 'https://assertible.com/deployments' -d'{\"service\":\"d8d73-b0a94b325ae4\",\"environmentName\":\"production\",\"version\":\"v1\"}'"
   }
   stage('Policy-Code Analysis') {
    // Run the maven build
