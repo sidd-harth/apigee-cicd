@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<JSONThreatProtection async="false" continueOnError="false" enabled="true" name="JTP-Too-Long-String">
+    <DisplayName>JTP-Too-Long-String</DisplayName>
+    <Properties/>
+    <Source>request</Source>
+    <StringValueLength>15</StringValueLength>
+</JSONThreatProtection>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-Extracting-Payload">
+    <DisplayName>EV-Extracting-Payload</DisplayName>
+    <Properties/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="extracted-user-type">
+            <JSONPath>$.user</JSONPath>
+        </Variable>
+        <Variable name="extracted-phone">
+            <JSONPath>$.phone</JSONPath>
+        </Variable>
+        <Variable name="extracted-email">
+            <JSONPath>$.email</JSONPath>
+        </Variable>
+        <Variable name="extracted-first-name">
+            <JSONPath>$.first_name</JSONPath>
+        </Variable>
+        <Variable name="extracted-last-name">
+            <JSONPath>$.last_name</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

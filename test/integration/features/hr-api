@@ -1,0 +1,411 @@
+[
+  {
+    "description": "    apigee tests",
+    "keyword": "Feature",
+    "name": "",
+    "line": 2,
+    "id": "",
+    "tags": [
+      {
+        "name": "@core",
+        "line": 1
+      }
+    ],
+    "uri": "prod_tests.feature",
+    "elements": [
+      {
+        "id": ";create-a-record",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "Create a record",
+        "tags": [
+          {
+            "name": "@core",
+            "line": 1
+          },
+          {
+            "name": "@POST_call",
+            "line": 5
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I set body to {\"name\":\"jane\",\"city\":\"hyd\"}",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I POST to /hr",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "response code should be 200",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 10,
+            "name": "response body path $.entities[0].name should be jane",
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      },
+      {
+        "id": ";error-check",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "error check",
+        "tags": [
+          {
+            "name": "@core",
+            "line": 1
+          },
+          {
+            "name": "@Error",
+            "line": 11
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "I set body to {\"name\":\"jane\",\"city\":\"hyd\"}",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "I POST to /hr",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "response code should be 400",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 16,
+            "name": "response body path $.error should be duplicate_unique_property_exists",
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      },
+      {
+        "id": ";retrieve-a-record",
+        "keyword": "Scenario",
+        "line": 18,
+        "name": "retrieve a record",
+        "tags": [
+          {
+            "name": "@core",
+            "line": 1
+          },
+          {
+            "name": "@GET_call",
+            "line": 17
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 19,
+            "name": "I set Content-type header to application/json",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 20,
+            "name": "I GET /hr/jane",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 21,
+            "name": "response code should be 200",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 22,
+            "name": "response body path $.entities[0].name should be jane",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 23,
+            "name": "response body path $.entities[0].city should be hyd",
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      },
+      {
+        "id": ";not-found-record",
+        "keyword": "Scenario",
+        "line": 25,
+        "name": "not found record",
+        "tags": [
+          {
+            "name": "@core",
+            "line": 1
+          },
+          {
+            "name": "@Error",
+            "line": 24
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 26,
+            "name": "I set Content-type header to application/json",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 27,
+            "name": "I GET /hr/invalid_name",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 28,
+            "name": "response code should be 404",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 29,
+            "name": "response body path $.error should be entity_not_found",
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      },
+      {
+        "id": ";update-a-record",
+        "keyword": "Scenario",
+        "line": 31,
+        "name": "update a record",
+        "tags": [
+          {
+            "name": "@core",
+            "line": 1
+          },
+          {
+            "name": "@PUT_call",
+            "line": 30
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 32,
+            "name": "I set body to {\"city\":\"bang\"}",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 33,
+            "name": "I PUT /hr/jane",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 34,
+            "name": "response code should be 200",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 35,
+            "name": "response body path $.entities[0].name should be jane",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 36,
+            "name": "response body path $.entities[0].city should be bang",
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      },
+      {
+        "id": ";delete-a-record-which-needs-oauth-access-token",
+        "keyword": "Scenario",
+        "line": 38,
+        "name": "delete a record which needs oauth access token",
+        "tags": [
+          {
+            "name": "@core",
+            "line": 1
+          },
+          {
+            "name": "@OAuth",
+            "line": 37
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 39,
+            "name": "I have basic authentication credentials <client_id> and <client_secret>",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 40,
+            "name": "I POST to /hcl_oauth/token?grant_type=client_credentials",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 41,
+            "name": "response code should be 200",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 42,
+            "name": "I store the value of body path $.access_token as access token",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 43,
+            "name": "I set bearer token",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 44,
+            "name": "I DELETE /hr/jane",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 45,
+            "name": "response code should be 200",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 46,
+            "name": "response body path $.entities[0].name should be jane",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 47,
+            "name": "response body path $.entities[0].city should be bang",
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,113 @@
+{
+    "version": "1.0",
+    "envConfig": {
+        "prod": {
+          "targetServers": [
+              {
+                "name" : "cicd-target-server",
+                "host" : "mamillarevathi-eval-prod.apigee.net",
+                "isEnabled" : true,
+                "port" : 80
+              }
+          ],
+          "virtualHosts": [],
+          "caches": [
+              {
+                "name": "cicd-cache",
+                "description": "Cicd pipeline cache in Production",
+                "expirySettings": {
+                    "timeoutInSec": {
+                        "value": "6000"
+                    },
+                    "valuesNull": false
+                }
+              }            
+          ],
+          "kvms": [
+                {
+                    "name": "cicd-kvm-credentials",
+                    "entry": [
+                        {
+                            "name": "username",
+                            "value": "aegon"
+                        },
+                        {
+                            "name": "password",
+                            "value": "hcl"
+                        }
+                    ]
+                }
+            ],
+          "resourcefiles":[],
+          "flowhooks":[]
+        }
+    },
+    "orgConfig": {
+        "apiProducts": [
+            {
+                "name": "Cicd-Prod-Product",
+                "apiResources": [
+                    "/",
+                    "/**"
+                ],
+                "approvalType": "auto",
+                "attributes": [
+                    {
+                        "name": "description",
+                        "value": "Testing CICD"
+                    }
+                ],
+                "description": "Testing CICD",
+                "displayName": "Cicd-Prod-Product",
+                "environments": [
+                    "prod"
+                ],
+                "proxies": [
+                    "HR-API",
+                    "CiCd-Security"
+                ],
+                "quota": "100000000",
+                "quotaInterval": "1",
+                "quotaTimeUnit": "minute",
+                "scopes": []
+            }        
+        ],
+        "developers": [
+            {
+                "email": "hr@api.com",
+                "firstName": "HR",
+                "lastName": "JOHN",
+                "userName": "JohnSeen",
+                "attributes": []
+            }
+        ],
+        "developerApps": {
+            "hr@api.com": [
+                {
+                    "name": "hrapp",
+                    "apiProducts": [ "Cicd-Prod-Product" ],
+                    "callbackUrl": "http://hr.com",
+                    "scopes": []
+                }
+            ]
+        }
+    },
+    "apiConfig": {
+        "HR-API": {
+            "maskconfigs": [
+               {
+                  "jSONPathsRequest": [
+                    "$.phone"
+                  ],
+                  "jSONPathsResponse": [
+                    "$.email"
+                  ],
+                  "name": "default",
+                  "variables": [
+                    "response.header.Content-Type"
+                  ]
+                }
+            ]
+        }
+    }    
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-Setting-New-Payload">
+    <DisplayName>AM-Setting-New-Payload</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="username">{kvm-username}</Header>
+            <Header name="password">{kvm-password}</Header>
+        </Headers>
+        <Payload contentType="application/json">
+            {
+            "id":"{js-id}",
+            "name":"{js-name}",
+            "phone":"{extracted-phone}",
+            "user":"{extracted-user-type}",
+            "email":"{extracted-email}",
+            "account":"{js-account}",
+            "date": "{system.time}"
+            }
+        </Payload>
+    </Set>
+</AssignMessage>

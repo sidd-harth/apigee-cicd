@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
     <Description/>
-    <FaultRules/>
+    <FaultRules>
+        <FaultRule name="JSON Threat Protection Policy Faults">
+            <Step>
+                <Name>AM-CustomErrorResponse</Name>
+            </Step>
+            <Condition>fault.name = "ExecutionFailed"</Condition>
+        </FaultRule>
+    </FaultRules>
     <PreFlow name="PreFlow">
-        <Request/>
+        <Request>
+            <Step>
+                <Name>Response-Cache-CICD</Name>
+            </Step>
+        </Request>
         <Response/>
     </PreFlow>
     <PostFlow name="PostFlow">
@@ -13,39 +24,83 @@
     <Flows>
         <Flow name="specificUser">
             <Description/>
-            <Request>
-            </Request>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/{name}") and (request.verb = "GET")</Condition>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>RF-Invalid-UserID</Name>
+                    <Condition>(response.content is "null")</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/{id}") and (request.verb = "GET")</Condition>
         </Flow>
         <Flow name="addUser">
             <Description/>
-            <Request/>
+            <Request>
+                <Step>
+                    <Name>JTP-Too-Long-String</Name>
+                    <Condition>(request.content != null)</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-Extracting-Payload</Name>
+                    <Condition>(request.content != null)</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-Missing-Phone-Number</Name>
+                    <Condition>(extracted-phone is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-Logging-User-Setting-ID</Name>
+                </Step>
+                <Step>
+                    <Name>Key-Value-Map-Operations-Credentials</Name>
+                </Step>
+                <Step>
+                    <Name>AM-Setting-New-Payload</Name>
+                </Step>
+            </Request>
             <Response/>
             <Condition>(proxy.pathsuffix MatchesPath "/") and (request.verb = "POST")</Condition>
         </Flow>
         <Flow name="updateUser">
             <Description/>
-            <Request/>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/{name}") and (request.verb = "PUT")</Condition>
-        </Flow>
-        <Flow name="deleteUser">
-            <Description/>
             <Request>
                 <Step>
-                    <Name>OAuth-v20-1</Name>
+                    <Name>JTP-Too-Long-String</Name>
+                    <Condition>(request.content != null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-PrivateKey</Name>
+                </Step>
+                <Step>
+                    <Name>Verify-JWT</Name>
                 </Step>
                 <Step>
                     <Name>Assign-Message-1</Name>
                 </Step>
             </Request>
             <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/{name}") and (request.verb = "DELETE")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/{id}") and (request.verb = "PUT")</Condition>
+        </Flow>
+        <Flow name="deleteUser">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>OAuth-Verify</Name>
+                </Step>
+                <Step>
+                    <Name>Assign-Message-1</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-Response</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/{id}") and (request.verb = "DELETE")</Condition>
         </Flow>
     </Flows>
     <HTTPProxyConnection>
-        <BasePath>/hr</BasePath>
+        <BasePath>/hr22</BasePath>
         <Properties/>
         <VirtualHost>default</VirtualHost>
         <VirtualHost>secure</VirtualHost>

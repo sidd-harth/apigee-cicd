@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="15" name="HR-API">
+<APIProxy revision="2" name="hr-api_rev31_2019_07_03">
     <Basepaths>/hr</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1562271590046</CreatedAt>
+    <CreatedAt>1562173347052</CreatedAt>
     <CreatedBy>onlineman477@gmail.com</CreatedBy>
     <Description>SILENTSHADOW$ git: e148adec SilentShadow</Description>
     <DisplayName>hr-api</DisplayName>
-    <LastModifiedAt>1562687096831</LastModifiedAt>
+    <LastModifiedAt>1562173347052</LastModifiedAt>
     <LastModifiedBy>onlineman477@gmail.com</LastModifiedBy>
-    <ManifestVersion>SHA-512:5a8b8e393941bd33f9de90bb8e2e959dd0af84369ee4247b06c9ccf814cda7c3a7a1fdab47e8f28e91e851894df59de30e0485f813b034ff05c3832210241939</ManifestVersion>
+    <ManifestVersion>SHA-512:63957310ff6fbad21b6689d33034fddee98f6ab9b3839cb9e76d7d210e64759d5dc76f7ba6fe9365cd68b8006b19d57d29c5d627799b4e089a61618fbab2aac5</ManifestVersion>
     <Policies>
-        <Policy>AM-CustomErrorResponse</Policy>
-        <Policy>AM-PrivateKey</Policy>
-        <Policy>AM-Response</Policy>
         <Policy>AM-Setting-New-Payload</Policy>
         <Policy>AS-Remove-URIPath</Policy>
         <Policy>Assign-Message-1</Policy>
         <Policy>EV-Extracting-Payload</Policy>
         <Policy>JS-Logging-User-Setting-ID</Policy>
-        <Policy>JTP-Too-Long-String</Policy>
         <Policy>Key-Value-Map-Operations-Credentials</Policy>
         <Policy>OAuth-Verify</Policy>
-        <Policy>REP-Checking-JSON-Payload</Policy>
-        <Policy>RF-Invalid-UserID</Policy>
-        <Policy>RF-Missing-Phone-Number</Policy>
         <Policy>Response-Cache-CICD</Policy>
-        <Policy>Verify-JWT</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
