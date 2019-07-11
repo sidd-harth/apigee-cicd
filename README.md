@@ -4,6 +4,8 @@ This repository includes the instructions and pipeline definition for CI/CD usin
 
 Often the most difficult and confusing aspect of application development is figuring out how to build a common framework for creating/deploying new applications. Over time, development teams have started using tools like Maven to automate some of these functions. This repository uses various tools/plugins for deploying Apigee bundles to the Edge platform.
 
+![arch_diagram](https://user-images.githubusercontent.com/28925814/61081996-2bbd4100-a446-11e9-9b5e-8cbd8d6801cb.png)
+
 # Introduction
 On every pipeline execution, the code goes through the following steps:
 1. Develop an API Proxy in `test` environment Apigee Edge UI, Download the proxy and push to Github. 
@@ -17,9 +19,6 @@ On every pipeline execution, the code goes through the following steps:
 9. If the test `FAILS`, current revision is `undeployed` and a stable revision is `re-deployed`.
 10. The `Cucumber reports` are also sent to `Slack Room`.
 11. Build `Success/Fail` notification is sent to `Slack Room`.
-
-The following diagram shows the steps included in the deployment pipeline:
-![arch_diagram](https://user-images.githubusercontent.com/28925814/61081996-2bbd4100-a446-11e9-9b5e-8cbd8d6801cb.png)
 
 # Prerequisites
 * [Apigee Edge Account](https://login.apigee.com/login)
