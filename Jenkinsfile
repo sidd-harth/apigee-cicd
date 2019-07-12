@@ -10,9 +10,9 @@ pipeline {
         nodejs 'NODEJS'
     }
 
-    /*environment {
-            stable_revision_number = 9
-        }*/
+    environment {
+        stable_revision = ''
+    }
 
     stages {
         stage('Initial-Checks') {
@@ -22,10 +22,18 @@ pipeline {
                 bat "mvn -v"
                 echo "$apigeeUsername"
                 //echo "$stable_revision_number"
+
+                println "Stable revision is : ${stable_revision}"
+                
+                //before deploying, get the current stable/deployed revision...this is used to fallback in case of failure.
+                bat "sh && sh getStableRevision.sh"
+                println "Stable revision is : ${stable_revision}"
             }
         }
         stage('Policy-Code Analysis') {
             steps {
+ println "Stable revision is : ${stable_revision}"
+                
                 bat "npm install -g apigeelint"
                 bat "apigeelint -s HR-API/apiproxy/ -f codeframe.js"
             }
@@ -55,6 +63,13 @@ pipeline {
         }*/
         stage('Deploy to Production') {
             steps {
+                println "Stable revision is : ${stable_revision}"
+                
+                //before deploying, get the current stable/deployed revision...this is used to fallback in case of failure.
+                bat "sh && sh getStableRevision.sh"
+                println "Stable revision is : ${stable_revision}"
+
+                //deploy using maven plugin
                 bat "sh && sh deploy.sh"
                 //bat "mvn -f HR-API/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update"
             }
