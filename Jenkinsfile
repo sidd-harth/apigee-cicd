@@ -23,7 +23,7 @@ pipeline {
                 echo "$apigeeUsername"
                 //echo "$stable_revision_number"
 
-                println "Stable revision is : ${stable_revision}"
+                println "Stable revision is : ${env.stable_revision}"
                 
                 //before deploying, get the current stable/deployed revision...this is used to fallback in case of failure.
                 bat "sh && sh getStableRevision.sh"
