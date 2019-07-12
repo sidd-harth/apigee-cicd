@@ -22,18 +22,18 @@ pipeline {
                 bat "mvn -v"
                 echo "$apigeeUsername"
                 //echo "$stable_revision_number"
-
+                script{
                 println "Stable revision is : ${env.stable_revision}"
                 
                 //before deploying, get the current stable/deployed revision...this is used to fallback in case of failure.
                 bat "sh && sh getStableRevision.sh"
                 println "Stable revision is : ${stable_revision}"
             }
-        }
+        }}
         stage('Policy-Code Analysis') {
             steps {
  println "Stable revision is : ${stable_revision}"
-                
+
                 bat "npm install -g apigeelint"
                 bat "apigeelint -s HR-API/apiproxy/ -f codeframe.js"
             }
