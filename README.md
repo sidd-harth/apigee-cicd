@@ -7,7 +7,9 @@ Often the most difficult and confusing aspect of application development is figu
   <img src="https://user-images.githubusercontent.com/28925814/61174524-03a51d80-a5bf-11e9-8e66-c59da67cabd6.png?raw=true" alt="Pipeline"/>
 </p>
 
-![arch_diagram](https://user-images.githubusercontent.com/28925814/61081996-2bbd4100-a446-11e9-9b5e-8cbd8d6801cb.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/28925814/61175386-170ab580-a5cc-11e9-9d24-ed0f80b7e769.png?raw=true" alt="Flow"/>
+</p>
 
 # Introduction
 On every pipeline execution, the code goes through the following steps:
