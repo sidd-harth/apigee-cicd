@@ -11,7 +11,8 @@ pipeline {
     }
 
     environment {
-        stable_revision = ''
+        //getting the current stable/deployed revision...this is used in undeloy.sh in case of failure...
+        stable_revision = sh(script: 'curl -H "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/onlineman477-eval/apis/HR-API/deployments" | jq -r ".environment[0].revision[0].name"', returnStdout: true).trim()
     }
 
     stages {
@@ -21,19 +22,10 @@ pipeline {
                 bat "npm -v"
                 bat "mvn -v"
                 echo "$apigeeUsername"
-                //echo "$stable_revision_number"
-                script{
-                println "Stable revision is : ${env.stable_revision}"
-                
-                //before deploying, get the current stable/deployed revision...this is used to fallback in case of failure.
-                bat "sh && sh getStableRevision.sh"
-                println "Stable revision is : ${stable_revision}"
-            }
-        }}
+                echo "Stable Revision: ${env.stable_revision}"
+        }}  
         stage('Policy-Code Analysis') {
             steps {
- println "Stable revision is : ${stable_revision}"
-
                 bat "npm install -g apigeelint"
                 bat "apigeelint -s HR-API/apiproxy/ -f codeframe.js"
             }
@@ -63,15 +55,11 @@ pipeline {
         }*/
         stage('Deploy to Production') {
             steps {
-                println "Stable revision is : ${stable_revision}"
-                
-                //before deploying, get the current stable/deployed revision...this is used to fallback in case of failure.
-                bat "sh && sh getStableRevision.sh"
-                println "Stable revision is : ${stable_revision}"
-
-                //deploy using maven plugin
-                bat "sh && sh deploy.sh"
-                //bat "mvn -f HR-API/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update"
+                 //deploy using maven plugin
+                 
+                 // deploy only proxy and deploy both proxy and config based on edge.js update
+                //bat "sh && sh deploy.sh"
+                bat "mvn -f HR-API/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update"
             }
         }
         stage('Integration Tests') {
