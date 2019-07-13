@@ -47,7 +47,7 @@ apigeelint -s HR-API/apiproxy/ -f codeframe.js
 7. Unit test any custom code within the proxy like `Javascript` in our case. But it can be `NodeJS` as well.
 ```node
 npm test test/unit/*.js
-npm run coverage test/unit/*.js"
+npm run coverage test/unit/*.js
 ```
 <p align="center">
   <img src="https://user-images.githubusercontent.com/28925814/61175190-bf1e7f80-a5c8-11e9-9688-22b9deda550f.jpg?raw=true" alt="Mocha"/>
