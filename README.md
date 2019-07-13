@@ -9,8 +9,6 @@ Often the most difficult and confusing aspect of application development is figu
 
 ![arch_diagram](https://user-images.githubusercontent.com/28925814/61081996-2bbd4100-a446-11e9-9b5e-8cbd8d6801cb.png)
 
-![pipeline](https://user-images.githubusercontent.com/28925814/61174524-03a51d80-a5bf-11e9-8e66-c59da67cabd6.png)
-
 # Introduction
 On every pipeline execution, the code goes through the following steps:
 1. Develop an API Proxy in `test` environment Apigee Edge UI, Download the proxy and push to Github. 
@@ -34,21 +32,23 @@ On every pipeline execution, the code goes through the following steps:
 
 # Demo Guide
 1. HR API - A simple API to perform CRUD operations on employee records. For backend I am using Firestore DB.
-3. Download `HR-API.zip` proxy bundle from this repo/bundles & deploy to `test` env or create an sample API Proxy.
+2. Download `HR-API.zip` proxy bundle from this repo/bundles & deploy to `test` env or create an sample API Proxy.
 3. Download `CiCd-Security.zip` proxy bundle from this repo/bundles & deploy to both `prod` & `test` environments.
 4. Fork this repo & create a directory structure as per `HR-API` directory & place your `apiproxy` folder.
-6. I am using an Parameterzied Build to pass the Apigee `username`, `password` and `base64encoded` string.
-7. `ApigeeLint` will go through the `apiproxy` folder,
+5. I am using an Parameterzied Build to pass the Apigee `username`, `password` and `base64encoded` string.
+6. `ApigeeLint` will go through the `apiproxy` folder,
 ```node
 apigeelint -s HR-API/apiproxy/ -f codeframe.js
 ```
 ![apigeelint](https://user-images.githubusercontent.com/28925814/61174597-110ed780-a5c0-11e9-983f-77a4868d482f.jpg)
-9. Unit test any custom code within the proxy like `Javascript` in our case. But it can be `NodeJS` as well.
+
+7. Unit test any custom code within the proxy like `Javascript` in our case. But it can be `NodeJS` as well.
 ```node
 npm test test/unit/*.js"
 npm run coverage test/unit/*.js"
 ```
-3. Using `Cobertura Plugin` in try-catch-finally block to generate reports in Jenkins.
+
+8. Using `Cobertura Plugin` in try-catch-finally block to generate reports in Jenkins.
 ```
 cd coverage && cp cobertura-coverage.xml $WORKSPACE"
 step([$class: 'CoberturaPublisher', coberturaReportFile: 'cobertura-coverage.xml'])
@@ -56,35 +56,36 @@ step([$class: 'CoberturaPublisher', coberturaReportFile: 'cobertura-coverage.xml
 <p align="center">
   <img src="https://user-images.githubusercontent.com/28925814/61174970-6994a380-a5c5-11e9-9e56-6c52ddc1bde3.jpg?raw=true" alt="Cobertura"/>
   
-8. Build & Deploy happens through Apigee Maven Plugin (update `pom` and `edge.json` files with appropiate details),
+9. Build & Deploy happens through Apigee Maven Plugin (update `pom` and `edge.json` files with appropiate details),
 ```maven
 mvn -f HR-API/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update
 ```
 <p align="center">
   <img src="https://user-images.githubusercontent.com/28925814/61175010-022b2380-a5c6-11e9-9fb2-711c41232850.jpg?raw=true" alt="Maven"/>
   
-9. Integration tests happen through Apickli - Cucumber - Gherkin Tests,
+10. Integration tests happen through Apickli - Cucumber - Gherkin Tests,
 ```javascript
 cd $WORKSPACE/test/integration && npm install"
 cd $WORKSPACE/test/integration && npm test"
 ```
-10. Cucumber Reports plugin in Jenkins will use the `reports.json` file to create HTML Reports & statistics.
+
+11. Cucumber Reports plugin in Jenkins will use the `reports.json` file to create HTML Reports & statistics.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/28925814/61174977-77e2bf80-a5c5-11e9-833c-2e86f69a0598.jpg?raw=true" alt="Cucumber-Reports"/>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/28925814/61174974-774a2900-a5c5-11e9-8b8a-33f3c4668254.jpg?raw=true" alt="Cucumber-Reports"/>
 
-11. If Integration tests fail, then through a `undeploy.sh` shell script I am undoing _Step 8_. Through Jenkins Environment variable I am getting the current deployed revision and storing it as `Stable revision`. Within Shell Script I am using this value to re-deploy in case of Failure.
+12. If Integration tests fail, then through a `undeploy.sh` shell script I am undoing _Step 8_. Through Jenkins Environment variable I am getting the current deployed revision and storing it as `Stable revision`. Within Shell Script I am using this value to re-deploy in case of Failure.
 ```javascript
 curl -X DELETE --header "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/$org_name/environments/$env_name/apis/$api_name/revisions/$rev_num/deployments"
 curl -X DELETE --header "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/$org_name/apis/$api_name/revisions/$rev_num"
 curl -X POST --header "Content-Type: application/x-www-form-urlencoded" --header "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/$org_name/environments/$env_name/apis/$api_name/revisions/$stable_revision/deployments"
 ```
-11. To send `cucumber-reports` to `Slack` I used cucumber-slack-notifier, but the pipeline cmd is not working as expected/documented. So for the time being I am running a separate `FreeStyle project >> Build >> Send Cucumber Report to Slack` and point it to the reports.json in this pipeline directory.
+13. To send `cucumber-reports` to `Slack` I used cucumber-slack-notifier, but the pipeline cmd is not working as expected/documented. So for the time being I am running a separate `FreeStyle project >> Build >> Send Cucumber Report to Slack` and point it to the reports.json in this pipeline directory.
 ```
 build job: 'cucumber-report'
 ```
-12. When Build Starts/Ends & At any step if a Failure occurs, a notification is sent to Slack Room along with cucumber reports.
+14. When Build Starts/Ends & At any step if a Failure occurs, a notification is sent to Slack Room along with cucumber reports.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/28925814/61175129-d4df7500-a5c7-11e9-8fb1-3ff6fa7307be.jpg?raw=true" alt="Slack"/>
   
