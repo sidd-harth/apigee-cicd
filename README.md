@@ -1,5 +1,4 @@
-## !! version 2 !!
-# CI/CD Demo - Apigee API Management Platform
+# CICD Demo - Apigee API Management Platform - v2
 This repository includes the instructions and pipeline definition for CI/CD using Jenkins, Apigee Lint, Apickli, Cucumber Reports, Slack & Apigee Maven Deploy plugin on Apigee.
 
 Often the most difficult and confusing aspect of application development is figuring out how to build a common framework for creating/deploying new applications. Over time, development teams have started using tools like Maven to automate some of these functions. This repository uses various tools/plugins for deploying Apigee bundles to the Edge platform.
@@ -98,6 +97,16 @@ build job: 'cucumber-report'
 14. When Build Starts/Ends & At any step if a Failure occurs, a notification is sent to Slack Room along with cucumber reports.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/28925814/61175129-d4df7500-a5c7-11e9-8fb1-3ff6fa7307be.jpg?raw=true" alt="Slack"/>
-  
+
+# Things to do in upcoming versions
+1. Update Developer Portal.
+    * After successful `Integration Test`, we can add another Stage to `Update Developer Portal Docs`. 
+    * Currently we have plugin/apis for updating `Apigee Drupal based portal`.
+    * We do not have any APIs for updating `Apigee Integrated Developer Portal` as of 14th July 2019.
+2. Add `Performace/Load Tests` after `Integrated Tests`
+3. Use Git Branches/Projects for `dev >> uat >> prod` environments and use Jenkins to Merge and Commit updates.
+4. Use `OAS` and use Apigee Management APIs to create and deploy a proxy through Pipeline.
+
+
 # References
 1. [Apigee - maven-jenkins-ci-demo](https://github.com/apigee/maven-jenkins-ci-demo)
