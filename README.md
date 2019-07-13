@@ -40,17 +40,25 @@ On every pipeline execution, the code goes through the following steps:
 ```node
 apigeelint -s HR-API/apiproxy/ -f codeframe.js
 ```
-![apigeelint](https://user-images.githubusercontent.com/28925814/61174597-110ed780-a5c0-11e9-983f-77a4868d482f.jpg)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/28925814/61175192-bfb71600-a5c8-11e9-823a-7dabf01bc4af.jpg?raw=true" alt="Apigeelint"/>
+</p>
 
 7. Unit test any custom code within the proxy like `Javascript` in our case. But it can be `NodeJS` as well.
 ```node
-npm test test/unit/*.js"
+npm test test/unit/*.js
 npm run coverage test/unit/*.js"
 ```
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/28925814/61175190-bf1e7f80-a5c8-11e9-9688-22b9deda550f.jpg?raw=true" alt="Mocha"/>
+</p>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/28925814/61175191-bfb71600-a5c8-11e9-9fc6-33a56f3084d5.jpg?raw=true" alt="Istanbul"/>
+</p>
 
 8. Using `Cobertura Plugin` in try-catch-finally block to generate reports in Jenkins.
 ```
-cd coverage && cp cobertura-coverage.xml $WORKSPACE"
+cd coverage && cp cobertura-coverage.xml $WORKSPACE
 step([$class: 'CoberturaPublisher', coberturaReportFile: 'cobertura-coverage.xml'])
 ```
 <p align="center">
@@ -65,8 +73,8 @@ mvn -f HR-API/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${a
   
 10. Integration tests happen through Apickli - Cucumber - Gherkin Tests,
 ```javascript
-cd $WORKSPACE/test/integration && npm install"
-cd $WORKSPACE/test/integration && npm test"
+cd $WORKSPACE/test/integration && npm install
+cd $WORKSPACE/test/integration && npm test
 ```
 
 11. Cucumber Reports plugin in Jenkins will use the `reports.json` file to create HTML Reports & statistics.
