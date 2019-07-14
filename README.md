@@ -84,7 +84,7 @@ cd $WORKSPACE/test/integration && npm test
 <p align="center">
   <img src="https://user-images.githubusercontent.com/28925814/61174974-774a2900-a5c5-11e9-8b8a-33f3c4668254.jpg?raw=true" alt="Cucumber-Reports"/>
 
-12. If Integration tests fail, then through a `undeploy.sh` shell script I am undoing _Step 8_. Through Jenkins Environment variable I am getting the current deployed revision and storing it as `Stable revision`. Within Shell Script I am using this value to re-deploy in case of Failure.
+12. If Integration tests fail, then through a `undeploy.sh` shell script I am undoing _**Step 9**_. Through Jenkins Environment variable I am getting the current deployed revision and storing it as `Stable revision`. Within Shell Script I am using this value to re-deploy in case of Failure.
 ```javascript
 curl -X DELETE --header "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/$org_name/environments/$env_name/apis/$api_name/revisions/$rev_num/deployments"
 curl -X DELETE --header "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/$org_name/apis/$api_name/revisions/$rev_num"
@@ -110,3 +110,6 @@ build job: 'cucumber-report'
 
 # References
 1. [Apigee - maven-jenkins-ci-demo](https://github.com/apigee/maven-jenkins-ci-demo)
+
+# LICENSE
+See the [MIT LICENSE](https://github.com/sidd-harth/apigee-cicd/blob/v2/LICENSE) file.
