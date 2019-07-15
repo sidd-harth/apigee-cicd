@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="JS-Logging-User-Setting-ID">
+    <DisplayName>JS-Logging-User-Setting-ID</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://Logging-User-Setting-ID.js</ResourceURL>
+</Javascript>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ResponseCache async="false" continueOnError="false" enabled="true" name="Response-Cache-CICD">
+    <DisplayName>Response-Cache-CICD</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <Prefix/>
+        <KeyFragment ref="request.uri" type="string"/>
+    </CacheKey>
+    <CacheResource>cicd-cache</CacheResource>
+    <Scope>Exclusive</Scope>
+    <SkipCacheLookup>(request.verb != "GET")</SkipCacheLookup>
+    <SkipCachePopulation>(request.verb != "GET")</SkipCachePopulation>
+    <ExcludeErrorResponse>true</ExcludeErrorResponse>
+</ResponseCache>

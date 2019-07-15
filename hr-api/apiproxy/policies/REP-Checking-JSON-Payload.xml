@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RegularExpressionProtection async="false" continueOnError="false" enabled="true" name="REP-Checking-JSON-Payload">
+    <DisplayName>REP-Checking-JSON-Payload</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <JSONPath>
+            <Pattern ignoreCase="false">$.user</Pattern>
+            <Expression>^(rooster|hen)$</Expression>
+        </JSONPath>
+    </JSONPayload>
+    <Source>request</Source>
+</RegularExpressionProtection>

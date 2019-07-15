@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-PrivateKey">
+    <DisplayName>AM-PrivateKey</DisplayName>
+    <Properties/>
+    <Properties/>
+    <AssignVariable>
+        <Name>private.key</Name>
+        <Value>cicd</Value>
+        <Ref/>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

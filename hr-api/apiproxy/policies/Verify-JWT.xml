@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyJWT async="false" continueOnError="false" enabled="true" name="Verify-JWT">
+    <DisplayName>Verify-JWT</DisplayName>
+    <Algorithm>HS256</Algorithm>
+    <SecretKey>
+        <Value ref="private.key"/>
+    </SecretKey>
+    <Subject>cicd</Subject>
+    <Issuer>self</Issuer>
+    <Audience>proxy,apickli</Audience>
+    <AdditionalClaims>
+        <Claim name="scm" type="string">github.com/sidd-harth/apigee-cicd</Claim>
+    </AdditionalClaims>
+</VerifyJWT>
